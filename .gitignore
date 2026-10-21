@@ -1,0 +1,14 @@
+# Build output
+/fsb
+/fsb.exe
+/dist/
+*.test
+
+# Runtime state and secrets
+fsb.env
+*.session
+logs/
+downloads/
+
+# Vendored modules — run `go mod vendor` locally if you need offline builds
+/vendor/
