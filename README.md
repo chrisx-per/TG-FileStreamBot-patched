@@ -23,8 +23,9 @@
 
 ## Patches in this fork
 
-Personal fork of [EverythingSuckz/TG-FileStreamBot](https://github.com/EverythingSuckz/TG-FileStreamBot) (golang branch).
+Personal fork of [EverythingSuckz/TG-FileStreamBot](https://github.com/EverythingSuckz/TG-FileStreamBot) — the Go implementation, which lives on upstream `main`.
 Only the changes listed below are added on top of upstream; everything else is untouched.
+Full upstream history, all branches and tags are preserved in a [mirror fork](https://github.com/chrisx-per/TG-FileStreamBot), so the code survives even if the upstream repository goes away.
 
 | Feature | Where | Notes |
 | --- | --- | --- |
