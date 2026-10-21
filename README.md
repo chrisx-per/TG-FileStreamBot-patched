@@ -1,5 +1,10 @@
 <h1 align="center">Telegram File Stream Bot</h1>
 <p align="center">
+  <a href="https://github.com/chrisx-per/TG-FileStreamBot-patched/actions/workflows/ci.yml"><img src="https://github.com/chrisx-per/TG-FileStreamBot-patched/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <img src="https://img.shields.io/badge/license-AGPL--3.0-blue" alt="AGPL-3.0">
+  <img src="https://img.shields.io/badge/go-1.24%2B-00ADD8" alt="Go 1.24+">
+</p>
+<p align="center">
   </a>
   <p align="center">
     <a herf="https://github.com/EverythingSuckz/TG-FileStreamBot">

@@ -29,13 +29,13 @@ import (
 var m3u8Regex = regexp.MustCompile(`(?i)https?://[^\s]+\.m3u8(?:\?[^\s]*)?`)
 
 var (
-	bandwidthRe  = regexp.MustCompile(`BANDWIDTH=(\d+)`)
-	keyMethodRe  = regexp.MustCompile(`METHOD=([A-Za-z0-9-]+)`)
-	keyURIRe     = regexp.MustCompile(`URI="([^"]+)"`)
-	keyIVRe      = regexp.MustCompile(`IV=0[xX]([0-9a-fA-F]+)`)
-	mapURIRe     = regexp.MustCompile(`URI="([^"]+)"`)
-	mediaSeqRe   = regexp.MustCompile(`#EXT-X-MEDIA-SEQUENCE:(\d+)`)
-	byterangeRe  = regexp.MustCompile(`(?m)^#EXT-X-BYTERANGE`)
+	bandwidthRe = regexp.MustCompile(`BANDWIDTH=(\d+)`)
+	keyMethodRe = regexp.MustCompile(`METHOD=([A-Za-z0-9-]+)`)
+	keyURIRe    = regexp.MustCompile(`URI="([^"]+)"`)
+	keyIVRe     = regexp.MustCompile(`IV=0[xX]([0-9a-fA-F]+)`)
+	mapURIRe    = regexp.MustCompile(`URI="([^"]+)"`)
+	mediaSeqRe  = regexp.MustCompile(`#EXT-X-MEDIA-SEQUENCE:(\d+)`)
+	byterangeRe = regexp.MustCompile(`(?m)^#EXT-X-BYTERANGE`)
 )
 
 var m3u8HTTP = &http.Client{}
