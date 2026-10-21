@@ -1,0 +1,47 @@
+#!/bin/sh /etc/rc.common
+# procd service for fsb on OpenWrt.
+#
+# Install:
+#   cp deploy/fsb.init /etc/init.d/fsb && chmod +x /etc/init.d/fsb
+#   /etc/init.d/fsb enable && /etc/init.d/fsb start
+#
+# Why procd instead of `rc.local` + `&`: rc.local runs once, has no restart
+# supervision, and every re-run of a start script accumulates another copy of
+# the process. procd owns exactly one instance and respawns it.
+
+START=99
+STOP=10
+USE_PROCD=1
+
+WORKDIR=/mnt/sda1/fsb
+PROG="$WORKDIR/fsb"
+
+# Optional wrapper, e.g. "proxychains4 -f /etc/proxychains.conf" when outbound
+# traffic has to go through a userspace proxy. Leave empty otherwise.
+# Note: this only has an effect on a dynamically linked build (CGO_ENABLED=1);
+# the static releases ignore LD_PRELOAD.
+WRAPPER=""
+
+start_service() {
+	if [ ! -x "$PROG" ]; then
+		logger -t fsb "binary not found or not executable: $PROG"
+		return 1
+	fi
+
+	# fsb reads ./fsb.env from its working directory, so cwd must be WORKDIR.
+	procd_open_instance
+	# shellcheck disable=SC2086  # word splitting of $WRAPPER is intentional
+	procd_set_param command $WRAPPER "$PROG" run
+	procd_set_param cwd "$WORKDIR"
+	procd_set_param env TZ=CST-8
+	# respawn <threshold> <timeout> <retry>: restart on crash, but do not spin
+	# in a tight loop when the bot token or the session is wrong.
+	procd_set_param respawn 3600 5 5
+	procd_set_param stdout 1
+	procd_set_param stderr 1
+	procd_close_instance
+}
+
+service_triggers() {
+	procd_add_reload_trigger "fsb"
+}

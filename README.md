@@ -51,6 +51,17 @@ go test ./...
 M3U8_LIVE_TEST=1 go test ./internal/commands -run TestDownloadM3u8Live -v
 ```
 
+### Deployment
+
+[docs/openwrt-deployment.md](docs/openwrt-deployment.md) documents running this on
+an OpenWrt router: procd service instead of `rc.local`, aria2 RPC over loopback,
+storage layout, memory tuning, and the BusyBox pitfalls that cost real time
+(`pgrep -x`, `pkill -f` matching its own session, static binaries ignoring
+`LD_PRELOAD`). Copy-ready templates live in [`deploy/`](deploy).
+
+Prebuilt static binaries for `linux/amd64` and `linux/arm64` are attached to
+every [release](https://github.com/chrisx-per/TG-FileStreamBot-patched/releases).
+
 ### Notes on the above
 
 - No bot token, API hash, host name or path from any real deployment is stored in this repository.
